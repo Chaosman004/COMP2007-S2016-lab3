@@ -17,37 +17,36 @@ namespace COMP2007_S2016_Lesson5C
         {
             if ((!IsPostBack) && (Request.QueryString.Count > 0))
             {
-                this.GetStudent();
+                this.GetDepartment();
             }
         }
 
-        protected void GetStudent()
+        protected void GetDepartment()
         {
-            // populate teh form with existing data from the database
-            int StudentID = Convert.ToInt32(Request.QueryString["StudentID"]);
+            // populate the form with existing data from the database
+            int DepartmentID = Convert.ToInt32(Request.QueryString["DepartmentID"]);
 
             // connect to the EF DB
             using (DefaultConnection db = new DefaultConnection())
             {
-                // populate a student object instance with the StudentID from the URL Parameter
-                Student updatedStudent = (from student in db.Students
-                                          where student.StudentID == StudentID
-                                          select student).FirstOrDefault();
+                // populate a student object instance with the DepartmentID from the URL Parameter
+                Department updatedDepartment = (from department in db.Departments
+                                                where department.DepartmentID == DepartmentID
+                                                select department).FirstOrDefault();
 
                 // map the student properties to the form controls
-                if (updatedStudent != null)
+                if (updatedDepartment != null)
                 {
-                    LastNameTextBox.Text = updatedStudent.LastName;
-                    FirstNameTextBox.Text = updatedStudent.FirstMidName;
-                    EnrollmentDateTextBox.Text = updatedStudent.EnrollmentDate.ToString("yyyy-MM-dd");
+                    DepartmentNameTextBox.Text = updatedDepartment.Name;
+                    BudgetTextBox.Text = updatedDepartment.Budget.ToString("yyyy-MM-dd");
                 }
             }
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            // Redirect back to Students page
-            Response.Redirect("~/Students.aspx");
+            // Redirect back to Department page
+            Response.Redirect("~/Departments.aspx");
         }
 
         protected void SaveButton_Click(object sender, EventArgs e)
@@ -55,41 +54,40 @@ namespace COMP2007_S2016_Lesson5C
             // Use EF to connect to the server
             using (DefaultConnection db = new DefaultConnection())
             {
-                // use the Student model to create a new student object and
+                // use the Department model to create a new Department object and
                 // save a new record
-                Student newStudent = new Student();
+                Department newDepartment = new Department();
 
-                int StudentID = 0;
+                int DepartmentID = 0;
 
-                if (Request.QueryString.Count > 0) // our URL has a StudentID in it
+                if (Request.QueryString.Count > 0) // our URL has a DepartmentID in it
                 {
                     // get the id from the URL
-                    StudentID = Convert.ToInt32(Request.QueryString["StudentID"]);
+                    DepartmentID = Convert.ToInt32(Request.QueryString["DepartmentID"]);
 
-                    // get the current student from EF DB
-                    newStudent = (from student in db.Students
-                                  where student.StudentID == StudentID
-                                  select student).FirstOrDefault();
+                    // get the current Department from EF DB
+                    newDepartment = (from department in db.Departments
+                                     where department.DepartmentID == DepartmentID
+                                     select department).FirstOrDefault();
                 }
 
-                // add form data to the new student record
-                newStudent.LastName = LastNameTextBox.Text;
-                newStudent.FirstMidName = FirstNameTextBox.Text;
-                newStudent.EnrollmentDate = Convert.ToDateTime(EnrollmentDateTextBox.Text);
+                // add form data to the new Department record
+                newDepartment.Name = DepartmentNameTextBox.Text;
+                newDepartment.Budget = Convert.ToDecimal(BudgetTextBox.Text);
 
-                // use LINQ to ADO.NET to add / insert new student into the database
+                // use LINQ to ADO.NET to add / insert new Department into the database
 
-                if (StudentID == 0)
+                if (DepartmentID == 0)
                 {
-                    db.Students.Add(newStudent);
+                    db.Departments.Add(newDepartment);
                 }
 
 
                 // save our changes - also updates and inserts
                 db.SaveChanges();
 
-                // Redirect back to the updated students page
-                Response.Redirect("~/Students.aspx");
+                // Redirect back to the updated Department page
+                Response.Redirect("~/Departments.aspx");
             }
         }
     }

@@ -41,7 +41,7 @@ namespace COMP2007_S2016_Lesson5C
             {
                 string SortString = Session["SortColumn"].ToString() + " " + Session["SortDirection"].ToString();
 
-                // query the Students Table using EF and LINQ
+                // query the Departments Table using EF and LINQ
                 var Department = (from allDepartments in db.Departments
                                 select allDepartments);
 
@@ -61,7 +61,7 @@ namespace COMP2007_S2016_Lesson5C
          * @param {GridViewDeleteEventArgs} e
          * @returns {void}
          */
-        protected void DepartmentGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void DepartmentsGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // store which row was clicked
             int selectedRow = e.RowIndex;
@@ -69,15 +69,15 @@ namespace COMP2007_S2016_Lesson5C
             // get the selected DepartmentID using the Grid's DataKey collection
             int DepartmentID = Convert.ToInt32(DepartmentsGridView.DataKeys[selectedRow].Values["DepartmentID"]);
 
-            // use EF to find the selected student in the DB and remove it
+            // use EF to find the selected Department in the DB and remove it
             using (DefaultConnection db = new DefaultConnection())
             {
-                // create object of the Student class and store the query string inside of it
+                // create object of the Department class and store the query string inside of it
                 Department deletedDepartment = (from DepartmentRecords in db.Departments
                                                 where DepartmentRecords.DepartmentID == DepartmentID
                                           select DepartmentRecords).FirstOrDefault();
 
-                // remove the selected student from the db
+                // remove the selected Department from the db
                 db.Departments.Remove(deletedDepartment);
 
                 // save my changes back to the database
@@ -116,7 +116,7 @@ namespace COMP2007_S2016_Lesson5C
             this.GetDepartments();
         }
 
-        protected void StudentsGridView_Sorting(object sender, GridViewSortEventArgs e)
+        protected void DepartmentsGridView_Sorting(object sender, GridViewSortEventArgs e)
         {
             // get the column to sorty by
             Session["SortColumn"] = e.SortExpression;

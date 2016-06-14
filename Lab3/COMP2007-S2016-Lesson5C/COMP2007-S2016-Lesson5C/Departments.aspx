@@ -19,7 +19,7 @@
                     </asp:DropDownList>
                 </div>
 
-                <asp:GridView runat="server" CssClass="table table-bordered table-striped table-hover"
+                 <asp:GridView runat="server" CssClass="table table-bordered table-striped table-hover"
                     ID="DepartmentsGridView" AutoGenerateColumns="false" DataKeyNames="DepartmentID"
                     OnRowDeleting="DepartmentsGridView_RowDeleting" AllowPaging="true" PageSize="3"
                     OnPageIndexChanging="DepartmentsGridView_PageIndexChanging" AllowSorting="true"
@@ -27,7 +27,7 @@
                     PagerStyle-CssClass="pagination-ys">
                     <Columns>
                         <asp:BoundField DataField="DepartmentID" HeaderText="Department ID" Visible="true" SortExpression="DepartmentID" />
-                        <asp:BoundField DataField="DepartmentName" HeaderText="Department Name" Visible="true" SortExpression="DepartmentName" />
+                        <asp:BoundField DataField="Name" HeaderText="Department Name" Visible="true" SortExpression="DepartmentName" />
                         <asp:BoundField DataField="Budget" HeaderText="Budget" Visible="true" SortExpression="Budget" />
                         <asp:HyperLinkField HeaderText="Edit" Text="<i class='fa fa-pencil-square-o fa-lg'></i> Edit" 
                             NavigateUrl="~/DepartmentDetails.aspx.cs" ControlStyle-CssClass="btn btn-primary btn-sm" runat="server"

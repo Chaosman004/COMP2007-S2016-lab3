@@ -13,31 +13,22 @@ namespace COMP2007_S2016_Lesson5C {
     public partial class DepartmentDetails {
         
         /// <summary>
-        /// LastNameTextBox control.
+        /// DepartmentNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LastNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox DepartmentNameTextBox;
         
         /// <summary>
-        /// FirstNameTextBox control.
+        /// BudgetTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FirstNameTextBox;
-        
-        /// <summary>
-        /// EnrollmentDateTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EnrollmentDateTextBox;
+        protected global::System.Web.UI.WebControls.TextBox BudgetTextBox;
         
         /// <summary>
         /// RangeValidator1 control.
