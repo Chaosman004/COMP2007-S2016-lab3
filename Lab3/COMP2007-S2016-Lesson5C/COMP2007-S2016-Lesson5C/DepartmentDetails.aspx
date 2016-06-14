@@ -13,9 +13,9 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="BudgetTextBox">Budget</label>
-                    <asp:TextBox runat="server" TextMode="Number" CssClass="form-control" ID="BudgetTextBox" placeholder="Budget Format: 00.00" required="true"></asp:TextBox>
-                    <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Invalid Date! Format: 00.00"
-                        ControlToValidate="BudgetTextBox" MinimumValue="00.00" MaximumValue="10000.00" Type="Currency" Display="Dynamic" BackColor="Red" ForeColor="White" Font-Size="Large"></asp:RangeValidator>
+                    <asp:TextBox runat="server" CssClass="form-control" ID="BudgetTextBox" placeholder="Budget limits: 0 to 9999999999.99" required="true"></asp:TextBox>
+                    <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Invalid Date! Format: 100.00"
+                        ControlToValidate="BudgetTextBox" MinimumValue="00.00" MaximumValue="9999999999.99" Type="Double" Display="Dynamic" BackColor="Red" ForeColor="White" Font-Size="Large"></asp:RangeValidator>
                 </div>
                 <div class="text-right">
                     <asp:Button Text="Cancel" ID="CancelButton" CssClass="btn btn-warning btn-lg" runat="server" 
